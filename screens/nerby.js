@@ -58,7 +58,7 @@ const Nerby = ({ navigation }) => {
     {
       id: 1,
       nama: "Tambal ban jetis kulon",
-      tipe: "Bengkel motor",
+      tipe: "Bengkel motor VIP",
       alamat: "Jl bareng cuma temen",
     },
     {
