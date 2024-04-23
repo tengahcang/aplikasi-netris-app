@@ -86,7 +86,7 @@ const TabList = () => {
           );
         },
         tabBarStyle: {
-          height: 65,
+          height: 60,
           paddingBottom: 8,
           backgroundColor: "#ffffff",
         },

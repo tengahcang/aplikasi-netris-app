@@ -7,17 +7,19 @@ import {
   FlatList,
   Dimensions,
   Image,
+  TextInput
 } from "react-native";
-import { TextInput } from "react-native-paper";
+// import { TextInput } from "react-native-paper";
 import { Separator, Button, AuthTextInput, PwdInput } from "../components";
 import React, { useState, useEffect } from "react";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
+import { Ionicons } from '@expo/vector-icons';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: '#FFE6E6'
   },
 });
 
@@ -101,7 +103,7 @@ const Nerby = ({ navigation }) => {
           height: windowHeight * 0.22,
           width: windowWidth * 0.8,
           borderRadius: 10,
-          backgroundColor: index === chooseItem ? "#DCCDE5" : "#FFFFFF",
+          backgroundColor: index === chooseItem ? "#FFFFFF" : "#FFFFFF",
           borderWidth: 2,
           borderColor: "#A7A7A7",
           marginHorizontal: 15,
@@ -156,6 +158,40 @@ const Nerby = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={{ flex: 1,  alignItems: "center", backgroundColor: '#FFE6E6' }}>
+        <Text style={{ fontSize: 20, fontFamily: 'Inter_700Bold', color: '#5A1781', marginTop:10, }}>
+          SEARCH BENGKEL LOCATION
+        </Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10,  }}>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', borderWidth: 2, borderRadius: 22, overflow: 'hidden', maxWidth: '80%', backgroundColor: '#FFE6E6'  }}>
+            <TextInput
+              style={{
+                flex: 1,
+                height: 40,
+                paddingHorizontal: 10,
+                fontFamily: 'Inter_400Regular',
+                fontSize: 16,
+                color: '#E0AED0',
+              }}
+              placeholder="Cari bengkel..."
+              placeholderTextColor="#5A1781"
+            />
+            <TouchableOpacity
+              style={{
+                backgroundColor: '#5A1781',
+                padding: 8,
+                borderRadius:20,
+              }}
+              onPress={() => {
+                // Handle search action
+              }}
+            >
+              <Ionicons name="search-outline" size={24} color="#FFE6E6" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+
       <View style={{ flex: 3 }}>
         <MapView
           showsUserLocation={true}
@@ -170,7 +206,7 @@ const Nerby = ({ navigation }) => {
         ></MapView>
       </View>
       <View
-        style={{ flex: 1.5, justifyContent: "center", alignItems: "center" }}
+        style={{ flex: 1.5, justifyContent: "center", alignItems: "center",marginBottom:7, }}
       >
         <FlatList
           data={listTambalBan}
