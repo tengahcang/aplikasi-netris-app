@@ -301,23 +301,23 @@ const Home = ({ navigation }) => {
           </View>
         </View>
         <View style={{ flex: 1, paddingVertical: 20 }}>
-          <Separator h={10} />
+          {/* <Separator h={20} /> */}
           <View
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
-              marginTop: 10,
+              marginTop: 35,
               marginBottom: 10,
             }}
           >
             <Text style={{ fontFamily: "Inter_600SemiBold", fontSize: 16 }}>
-              Seputar tambal ban
+              MORE INFO
             </Text>
             <Text style={{ fontFamily: "Inter_400Regular", fontSize: 12 }}>
               Lihat semua
             </Text>
           </View>
-          <Separator h={10} />
+
           {/* card berita */}
           <FlatList
             data={dataBerita}
