@@ -1,7 +1,9 @@
 import { View, Text, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Separator, Button, AuthTextInput, PwdInput } from "../components";
-import React from "react";
+import React,{useState} from "react";
+import Firebase from '../firebase';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,6 +15,24 @@ const styles = StyleSheet.create({
 });
 
 const Login = ({ navigation }) => {
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+  const login = () => {
+        Firebase.auth().signInWithEmailAndPassword(email,password).then((userCredential) => {
+            saveUserData(email,password,userCredential);
+        }) .catch((error) => {
+            console.error(error)
+        })
+  };
+  const saveUserData = async(email,password,credential) => {
+        const userData = {email,password,credential};
+        try {
+            await AsyncStorage.setItem("user-data",JSON.stringify(userData));
+            navigation.replace("HomeTab");
+        } catch (error) {
+            console.error(error);
+        }
+  };
   return (
     <View style={styles.container}>
       <View
@@ -40,16 +60,16 @@ const Login = ({ navigation }) => {
       <View
         style={{ flex: 1.5, alignItems: "center", justifyContent: "center" }}
       >
-        <AuthTextInput label={"Email"} ph={"Enter your email"} />
+        <AuthTextInput label={"Email"} ph={"Enter your email"} onChangeText={(value) => setEmail(value)} />
         <Separator h={20} />
-        <PwdInput label={"Password"} />
+        <PwdInput label={"Password"} onChangeText={(value) => setPassword(value)} />
         <Separator h={20} />
       </View>
       <View style={{ flex: 3, justifyContent: "center", alignItems: "center" }}>
         <Button
           left={false}
           text={"Login"}
-          op={() => navigation.navigate("HomeTab")}
+          op={login}
         />
         <Separator h={15} />
         <Text
@@ -62,7 +82,7 @@ const Login = ({ navigation }) => {
           Or
         </Text>
         <Separator h={15} />
-        <Button left={true} text={"Continue with Google"} iconName={"google"} />
+        <Button left={true}  text={"Continue with Google"} iconName={"google"} />
         <Separator h={20} />
         <Button
           left={true}
