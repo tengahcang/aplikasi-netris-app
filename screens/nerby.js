@@ -11,7 +11,7 @@ import {
 } from "react-native";
 // import { TextInput } from "react-native-paper";
 import { Separator, Button, AuthTextInput, PwdInput } from "../components";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import { Ionicons } from '@expo/vector-icons';
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
 const Nerby = ({ navigation }) => {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [chooseItem, setChooseItem] = useState(0);
+  const mapRef = useRef(null);
 
   useEffect(() => {
     const fetchCurrentLocation = async () => {
@@ -54,51 +55,62 @@ const Nerby = ({ navigation }) => {
       nama: "Tambal ban cak imin",
       tipe: "Bengkel motor",
       alamat: "Jl bareng cuma temen",
+      latitude: -7.314237,
+      longitude: 112.726615
     },
     {
       id: 1,
       nama: "Tambal ban jetis kulon",
       tipe: "Bengkel motor VIP",
       alamat: "Jl bareng cuma temen",
+      latitude: -7.30857273275034,
+      longitude: 112.71209368312886,
     },
-    {
-      id: 2,
-      nama: "Tambal ban mas bro",
-      tipe: "Bengkel motor",
-      alamat: "Jl bareng cuma temen",
-    },
-    {
-      id: 3,
-      nama: "Tambal ban sis",
-      tipe: "Bengkel mobil",
-      alamat: "Jl bareng cuma temen",
-    },
-    {
-      id: 4,
-      nama: "Tambal ban pak dono",
-      tipe: "Bengkel mobil",
-      alamat: "Jl bareng cuma temen",
-    },
-    {
-      id: 5,
-      nama: "Tambal ban banjaya",
-      tipe: "Bengkel motor",
-      alamat: "Jl bareng cuma temen",
-    },
-    {
-      id: 6,
-      nama: "Tambal ban barokah",
-      tipe: "Bengkel motor",
-      alamat: "Jl bareng cuma temen",
-    },
+    // {
+    //   id: 2,
+    //   nama: "Tambal ban mas bro",
+    //   tipe: "Bengkel motor",
+    //   alamat: "Jl bareng cuma temen",
+    // },
+    // {
+    //   id: 3,
+    //   nama: "Tambal ban sis",
+    //   tipe: "Bengkel mobil",
+    //   alamat: "Jl bareng cuma temen",
+    // },
+    // {
+    //   id: 4,
+    //   nama: "Tambal ban pak dono",
+    //   tipe: "Bengkel mobil",
+    //   alamat: "Jl bareng cuma temen",
+    // },
+    // {
+    //   id: 5,
+    //   nama: "Tambal ban banjaya",
+    //   tipe: "Bengkel motor",
+    //   alamat: "Jl bareng cuma temen",
+    // },
+    // {
+    //   id: 6,
+    //   nama: "Tambal ban barokah",
+    //   tipe: "Bengkel motor",
+    //   alamat: "Jl bareng cuma temen",
+    // },
   ];
+  const handlePressItem = (item) => {
+    setChooseItem(item.id);
+    mapRef.current.animateToRegion({
+      latitude: item.latitude,
+      longitude: item.longitude,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01,
+    });
+  };
 
   const renderItem = ({ item, index }) => {
     return (
       <TouchableOpacity
-        onPress={() => {
-          setChooseItem(item.id);
-        }}
+        onPress={() => handlePressItem(item)}
         style={{
           height: windowHeight * 0.22,
           width: windowWidth * 0.8,
@@ -155,6 +167,7 @@ const Nerby = ({ navigation }) => {
       </TouchableOpacity>
     );
   };
+  
 
   return (
     <View style={styles.container}>
@@ -194,6 +207,7 @@ const Nerby = ({ navigation }) => {
 
       <View style={{ flex: 3 }}>
         <MapView
+          ref={mapRef}
           showsUserLocation={true}
           showsCompass={true}
           initialRegion={{
@@ -203,7 +217,16 @@ const Nerby = ({ navigation }) => {
             longitudeDelta: 0.1,
           }}
           style={{ width: "100%", height: "100%" }}
-        ></MapView>
+        >
+          {listTambalBan.map((location) => (
+            <Marker
+              key={location.id}
+              coordinate={{ latitude: location.latitude, longitude: location.longitude }}
+              title={location.nama}
+              description={location.alamat}
+            />
+          ))}
+        </MapView>
       </View>
       <View
         style={{ flex: 1.5, justifyContent: "center", alignItems: "center",marginBottom:7, }}
