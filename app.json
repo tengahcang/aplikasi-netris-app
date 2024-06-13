@@ -31,10 +31,17 @@
         "googleMaps": {
           "apiKey": "AIzaSyA47i_0RjaPDgL631WIAGA9QcRzWMQfhCo"
         }
-      }
+      },
+      "package": "com.tengahcang.NetrisApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "26e6951f-57f1-43b8-98ab-c7c34b13133f"
+      }
+    },
+    "owner": "tengahcang"
   }
 }

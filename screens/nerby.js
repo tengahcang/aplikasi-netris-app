@@ -6,7 +6,7 @@ import {
   FlatList,
   Dimensions,
   Image,
-  TextInput
+  TextInput} from "react-native";
 
 // import { TextInput } from "react-native-paper";
 import { Separator, Button, AuthTextInput, PwdInput } from "../components";
@@ -57,12 +57,12 @@ const Nerby = ({ navigation }) => {
 
     { id: 0, nama: "Tambal ban cak imin", tipe: "Bengkel motor", alamat: "Jl bareng cuma temen",latitude: -7.314237,longitude: 112.726615 },
     { id: 1, nama: "Tambal ban jetis kulon", tipe: "Bengkel motor VIP", alamat: "Jl bareng cuma temen",latitude: -7.30857273275034,longitude: 112.71209368312886, },
-    { id: 2, nama: "Tambal ban mas bro", tipe: "Bengkel motor", alamat: "Jl bareng cuma temen" },
-    { id: 3, nama: "Tambal ban sis", tipe: "Bengkel mobil", alamat: "Jl bareng cuma temen" },
-    { id: 4, nama: "Tambal ban pak dono", tipe: "Bengkel mobil", alamat: "Jl bareng cuma temen" },
-    { id: 5, nama: "Tambal ban banjaya", tipe: "Bengkel motor", alamat: "Jl bareng cuma temen" },
-    { id: 6, nama: "Tambal ban barokah", tipe: "Bengkel motor", alamat: "Jl bareng cuma temen" },
-    { id: 7, nama: "Tambal ban siskasis", tipe: "Bengkel motor", alamat: "Jl bareng cuma temen" },
+    // { id: 2, nama: "Tambal ban mas bro", tipe: "Bengkel motor", alamat: "Jl bareng cuma temen" },
+    // { id: 3, nama: "Tambal ban sis", tipe: "Bengkel mobil", alamat: "Jl bareng cuma temen" },
+    // { id: 4, nama: "Tambal ban pak dono", tipe: "Bengkel mobil", alamat: "Jl bareng cuma temen" },
+    // { id: 5, nama: "Tambal ban banjaya", tipe: "Bengkel motor", alamat: "Jl bareng cuma temen" },
+    // { id: 6, nama: "Tambal ban barokah", tipe: "Bengkel motor", alamat: "Jl bareng cuma temen" },
+    // { id: 7, nama: "Tambal ban siskasis", tipe: "Bengkel motor", alamat: "Jl bareng cuma temen" },
 
   ];
   const handlePressItem = (item) => {
@@ -90,7 +90,7 @@ const Nerby = ({ navigation }) => {
     return (
       <TouchableOpacity
 
-        onPress={() => setChooseItem(item.id)}
+        onPress={() => handlePressItem(item)}
 
         style={{
           height: windowHeight * 0.22,
