@@ -169,7 +169,7 @@ export default function App() {
     <AppLoading />
   );
 }
-
+// jasjdoajspdjoasjdop
 const styles = StyleSheet.create({
   container: {
     flex: 1,
