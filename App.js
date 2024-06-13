@@ -120,7 +120,7 @@ const TabList = () => {
     </Tab.Navigator>
   );
 };
-// asu
+
 const CustomTabIcon = ({ name, focused, size, color }) => {
   return (
     <View style={styles.tabIconContainer}>
