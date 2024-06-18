@@ -170,6 +170,7 @@ export default function App() {
   );
 }
 // jasjdoajspdjoasjdop
+// hiasdoiahsdoihasiodhi
 const styles = StyleSheet.create({
   container: {
     flex: 1,
